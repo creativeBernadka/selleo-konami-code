@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sweet kittens</title>
+</head>
+<body>
+<h1>Sweet kittens</h1>
+<script>
+    const konamiCode = "injects3cret";
+    let enteredText = [];
+    let lastCharTime;
+    document.addEventListener('keydown', (event) => {
+        console.log(event.key, enteredText, lastCharTime);
+        const date = new Date();
+        if (enteredText.length === 0){
+            lastCharTime = date.getTime();
+        }
+        if (date.getTime() - lastCharTime > 5000){
+            enteredText = [];
+        }
+        else {
+            enteredText.push(event.key);
+            lastCharTime = date.getTime();
+
+            if (enteredText.length > konamiCode.length){
+                enteredText.shift();
+            }
+
+            console.log(enteredText.join(""), konamiCode, enteredText.join("") === konamiCode);
+            if (enteredText.join("") === konamiCode){
+                console.log("WE DID IT");
+            }
+        }
+    })
+</script>
+</body>
+</html>
